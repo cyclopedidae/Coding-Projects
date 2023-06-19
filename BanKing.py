@@ -53,8 +53,14 @@ def edit_account():
     print("Which account would you like to edit?")    
     choice_a = int(input("Type Here: "))
 
-    print("Please choose an option below.")
-    print("1. Add to balance\n2. Subtract from balance\n3. Edit balance")
+    available_options = [
+        "Add to balance",
+        "Subtract from balance",
+        "Edit balance",
+    ]
+    print("Available Options:")
+    for i, option in enumerate(available_options):
+        print(f"{i + 1}. {option}")
 
     choice_b = input("Type Here: ")
 
