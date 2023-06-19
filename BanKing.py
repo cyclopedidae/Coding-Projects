@@ -1,80 +1,84 @@
-divider = "============"
-
-file = open("chronic_banking.txt", "r")
-account_name = file.readline().split(", ") #creating lists of NAMES
-account_balance = file.readline(). split(", ") #creating lists of AMOUNTS
-file.close()
-
 class Account:
     def __init__(self, name, balance):
         self.name = name
         self.balance = balance
 
-account_obj = []
-num_of_accounts = len(account_name)
+class Banking:
+    DIVIDER = "============"
 
-for x in range(num_of_accounts): #create the object names
-    y = str(x)
-    account_obj.append("account_" + y)
+    def __init__(self):
+        file = open("chronic_banking.txt", "r")
+        self.account_name = file.readline().split(", ") #creating lists of NAMES
+        self.account_balance = file.readline(). split(", ") #creating lists of AMOUNTS
+        file.close()
+        
+        self.account_obj = []
+        self.num_of_accounts = len(self.account_name)
 
-for x in range(num_of_accounts): #creates the objects and adds parameters
-    account_obj[x] = Account(account_name[x], account_balance[x])
+        for x in range(self.num_of_accounts): #create the object names
+            y = str(x)
+            self.account_obj.append("account_" + y)
 
-def menu():
-    on = True
+        for x in range(self.num_of_accounts): #creates the objects and adds parameters
+            self.account_obj[x] = Account(self.account_name[x], self.account_balance[x])
 
-    while on:
-        print(divider + " BanKing " + divider)
-        print("1. View accounts\n2. Edit account balance\n3. Quit program")
+    def run(self):
+        on = True
 
-        choice = input("Type Here: ")
+        while on:
+            print(self.DIVIDER + " BanKing " + self.DIVIDER)
+            print("1. View accounts\n2. Edit account balance\n3. Quit program")
 
-        if choice == "1": #view money
-            view_accounts()
+            choice = input("Type Here: ")
+
+            if choice == "1": #view money
+                self.view_accounts()
+                return
+            
+            elif choice == "2": #input paycheck
+                self.edit_account()
+                return
+            
+            elif choice == "3": #quit
+                on = False #option to close menu
+                if on == False:
+                    break
+
+    def back_menu(self):
+        input("Press enter to return to the menu.")
+
+    def view_accounts(self):
+        for obj in self.account_obj:
+            print(obj.name + ": " + obj.balance)
+
+    def edit_account(self):
+        print("Which account would you like to edit?")    
+        choice_a = int(input("Type Here: "))
+
+        print("Please choose an option below.")
+        print("1. Add to balance\n2. Subtract from balance\n3. Edit balance")
+
+        choice_b = input("Type Here: ")
+
+        if choice_b == "1":
+            current = int(self.account_obj[choice_a].balance)
+            
+            print("How much would you like to add?")
+            to_add = int(input("Enter amount here: "))
+            
+            new_balance = current + to_add
+
+            self.account_obj[choice_a].balance = new_balance
+            print(self.account_obj[choice_a].balance)
             return
         
-        elif choice == "2": #input paycheck
-            edit_account()
+        elif choice_b == "2":
             return
-        
-        elif choice == "3": #quit
-            on = False #option to close menu
-            if on == False:
-                break
+        elif choice_b == "3":
+            return
 
-def back_menu():
-    input("Press enter to return to the menu.")
-
-def view_accounts():
-    for obj in account_obj:
-        print(obj.name + ": " + obj.balance)
-
-def edit_account():
-    print("Which account would you like to edit?")    
-    choice_a = int(input("Type Here: "))
-
-    print("Please choose an option below.")
-    print("1. Add to balance\n2. Subtract from balance\n3. Edit balance")
-
-    choice_b = input("Type Here: ")
-
-    if choice_b == "1":
-        current = int(account_obj[choice_a].balance)
-        
-        print("How much would you like to add?")
-        to_add = int(input("Enter amount here: "))
-        
-        new_balance = current + to_add
-
-        account_obj[choice_a].balance = new_balance
-        print(account_obj[choice_a].balance)
-        return
-    
-    elif choice_b == "2":
-        return
-    elif choice_b == "3":
-        return
-menu()
+b = Banking()
+b.run()
 
 # #Accounts ARE ALWAYS in this order: cash, rent, food, emergency funds, investing, etc
 
