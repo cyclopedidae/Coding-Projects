@@ -1,0 +1,2 @@
+Cash, Rent, Food, Emergency Funds, Investing
+5, 4, 4, 4, 4
