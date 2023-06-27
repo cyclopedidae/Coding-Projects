@@ -1,2 +1,2 @@
-Cash, Rent, Food, Emergency Funds, Investing
-5, 4, 4, 4, 4
+Cash, Chequing Account, Rent, Tuition
+904.4100000000001, 50.15, 39.9, 5.00
