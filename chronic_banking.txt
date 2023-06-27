@@ -1,2 +1,2 @@
-Cash, Chequing Account, Rent, Tuition
-904.4100000000001, 50.15, 39.9, 5.00
+Cash, Chequing Account, Rent, Food Budget, Emergency Funds, Investing
+23.75, 2.15, 1950.00, 400.00, 20.45, 541.70
