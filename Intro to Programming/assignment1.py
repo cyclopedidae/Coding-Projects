@@ -18,6 +18,8 @@ def get_distance(velocity:float, angle:float)-> float:
     """
     #Your code goes here
 
+    distance = (pow(velocity, 2)*sin(angle*2))/g
+
 
 def degrees_to_radians(d:float)-> float:
     """
@@ -67,6 +69,17 @@ def is_a_number(s:str)-> bool:
     False
     """
     #Your code goes here
+    try:
+        float(s)
+    except:
+        return False
+    else:
+        if float(s) > 0:
+            return True
+        else:
+            return False
+
+    
 
 def is_valid_angle(s:str)-> bool:
     """
@@ -87,6 +100,17 @@ def is_valid_angle(s:str)-> bool:
     """
     #Your code goes here
 
+    s = s.lower()
+
+    if s.isdigit() ==  True: 
+        return False #Doesn't have angle (letter), so invalid
+    elif s.rfind("d") >= 1:
+        if 90 > float(s.replace("d", "")) > 0:
+            return True
+    elif s.endswith("r"):
+        if (pi/2) > float(s.replace("r", "")) > 0:
+            return True
+
 
 def approx_equal(x, y, tol):
     """
@@ -103,7 +127,10 @@ def approx_equal(x, y, tol):
     True
     """
     #Your code goes here
-    
+    if abs(x - y) == tol:
+        return True
+    else:
+        return False
 
 
 """
