@@ -18,7 +18,7 @@ def get_distance(velocity:float, angle:float)-> float:
     """
     #Your code goes here
 
-    distance = (pow(velocity, 2)*sin(angle*2))/g
+    return (pow(velocity, 2)*math.sin(angle*2))/g
 
 
 def degrees_to_radians(d:float)-> float:
@@ -32,7 +32,7 @@ def degrees_to_radians(d:float)-> float:
     3.141592653589793
     """
     #Your code goes here
-
+    return math.radians(d)
 
 def get_radian_of(angle_string: str)-> float:
     """
@@ -50,7 +50,12 @@ def get_radian_of(angle_string: str)-> float:
     0.7853981633974483
     """
     #Your code goes here
+    angle_string = angle_string.lower()
 
+    if angle_string.endswith("d"):
+        return math.radians(float(angle_string.strip("d")))
+    elif angle_string.endswith("r"):
+        return float(angle_string.strip("r"))
 
 def is_a_number(s:str)-> bool:
     """
@@ -71,13 +76,11 @@ def is_a_number(s:str)-> bool:
     #Your code goes here
     try:
         float(s)
+        return True
     except:
         return False
     else:
-        if float(s) > 0:
-            return True
-        else:
-            return False
+        return float(s) > 0
 
     
 
